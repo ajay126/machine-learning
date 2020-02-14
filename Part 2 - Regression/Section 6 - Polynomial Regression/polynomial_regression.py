@@ -10,7 +10,6 @@ dataset = pd.read_csv('Position_Salaries.csv')
 X = dataset.iloc[:,1:2].values
 y = dataset.iloc[:,2].values
 
-
 #Splitting dataset into the tranning set and test set
 """from sklearn.model_selection import train_test_split
 X_train,X_test,y_train,y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)"""
@@ -21,15 +20,12 @@ from sklearn.linear_model import LinearRegression
 lin_reg = LinearRegression()
 lin_reg.fit(X,y)
 
-
 #fitting Linear Regression to dataset
 from sklearn.preprocessing import PolynomialFeatures
 poly_reg = PolynomialFeatures(degree = 4)
 X_poly = poly_reg.fit_transform(X)
 lin_reg_2 = LinearRegression()
 lin_reg_2.fit(X_poly,y)
-
-
 
 # Visualising the Linear Regression results
 plt.scatter(X, y, color = 'red')
@@ -39,7 +35,6 @@ plt.xlabel('Position level')
 plt.ylabel('Salary')
 plt.show()
 
-
 # Visualising the Polynomial Regression results
 plt.scatter(X, y, color = 'red')
 plt.plot(X, lin_reg_2.predict(poly_reg.fit_transform(X)), color = 'blue')
@@ -47,3 +42,9 @@ plt.title('Truth or Bluff (Polynomial Regression)')
 plt.xlabel('Position level')
 plt.ylabel('Salary')
 plt.show()
+
+#prediction new result with linear regration
+#lin_reg.predict(6.5)
+
+#prediction new result with polynomial regration
+lin_reg_2.predict(poly_reg.fit_transform(6.5))
